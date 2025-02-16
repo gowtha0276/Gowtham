@@ -1,0 +1,80 @@
+/* Parent container to position everything correctly */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    flex-direction: column;
+    text-align: center;
+}
+
+  /* Import Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;500;900&display=swap');
+
+.center-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    font-family: monospace;
+    font-weight: 900;
+    color: white; /* White text */
+    -webkit-text-stroke: 1.5px black; /* Black border around text */
+    text-shadow: none; /* Remove previous shadow */
+    z-index: 10;
+  }
+
+  .center-text h1 {
+      font-size: 40px;
+    color: white;
+    -webkit-text-stroke: 1.5px black; /* Thicker border for larger text */
+  }
+  
+  .center-text om-typewriter {
+    font-size: 20px;
+    color: white;
+    -webkit-text-stroke: 0.8px black; /* Thinner border for smaller text */
+  }
+
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .center-text {
+        font-size: 1.5rem; /* Adjust font size for smaller screens */
+    }
+}
+
+@media (max-width: 480px) {
+    .center-text {
+        font-size: 1.2rem; /* Further reduce size for very small screens */
+    }
+}
+  
+  /* Accordion container */
+  .accordion {
+    display: flex;
+    margin: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+    z-index: 1; /* Keeps it below text */
+  }
+  
+  /* Individual accordion items (images) */
+  .accordion-item {
+    flex: 1;
+    background-size: cover;
+    background-position: center;
+    transition: flex 0.5s ease-in-out;
+    cursor: pointer;
+  }
+  
+  /* Expanding effect on hover */
+  .accordion-item.active {
+    flex: 5;
+  }
+  
