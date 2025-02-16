@@ -16,11 +16,11 @@ export class AccordionComponent {
   hoveredImage: string | null = null;
 
   images = [
-    'Home/1.JPG',
+    'Home/1.jpg',
     'Home/2.jpg',
-    'Home/3.JPG',
+    'Home/3.jpg',
     'Home/4.jpg',
-    'Home/5.JPG'
+    'Home/6.JPEG'
   ];
 
   ngOnInit() {

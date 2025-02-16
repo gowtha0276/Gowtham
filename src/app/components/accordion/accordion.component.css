@@ -52,6 +52,12 @@
   text-align: -webkit-center;
 }
 
+@media (max-width: 768px) {
+  .container, .accordion {
+      height: 100vh;
+  }
+}
+
 
 
 
