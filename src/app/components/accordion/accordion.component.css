@@ -58,6 +58,15 @@
   }
 }
 
+:root {
+  --vh: 1vh; /* Default value, will be updated dynamically */
+}
+
+@media (max-width: 768px) {
+  .accordion {
+      height: calc(var(--vh, 1vh) * 100); /* Adjust height dynamically */
+  }
+}
 
 
 
