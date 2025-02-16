@@ -53,7 +53,7 @@
   font-weight: 500;
   backdrop-filter: blur(10px);
   text-align: center;
-  writing-mode: sideways-lr; /* Ensures text flows horizontally */
+  writing-mode: vertical-rl; /* Ensures text flows horizontally */
   white-space: nowrap; /* Prevents text from wrapping */
 }
 
