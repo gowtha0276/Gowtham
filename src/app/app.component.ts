@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { AccordionComponent } from './components/accordion/accordion.component';
 import { HeaderComponent } from './components/header/header.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -11,4 +12,11 @@ import { HeaderComponent } from './components/header/header.component';
 })
 export class AppComponent {
   title = 'Portfolio';
+  isHomePage: boolean = false;
+
+  constructor(private router: Router) {
+    this.router.events.subscribe(() => {
+      this.isHomePage = this.router.url === '/';
+    });
+  }
 }

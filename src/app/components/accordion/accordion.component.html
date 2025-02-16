@@ -1,22 +1,26 @@
 <div class="container">
-    <div class="center-text">
+    <!-- <div class="center-text">
         <h1>Hola, Gowtham Manoharan</h1>
-         <om-typewriter
+         
+    </div> -->
+  
+    <div class="accordion">
+      <div 
+        *ngFor="let image of images; let i = index" 
+        class="accordion-item" 
+        [ngStyle]="{'background-image': 'url(' + image + ')'}"
+        (mouseover)="setActiveImage(i)"
+        [class.active]="getActive(i)"
+      >
+      </div>
+        <div class="custom-footer">
+          <om-typewriter
             [words]="words"
             [writeSpeed]="20"
             [deleteDelay]="2000"
             [writeDelay]="30"
-      ></om-typewriter> 
-    </div>
-  
-    <div class="accordion">
-      <div 
-        *ngFor="let image of images" 
-        class="accordion-item" 
-        [ngStyle]="{'background-image': 'url(' + image + ')'}"
-        (mouseover)="hoveredImage = image"
-        [class.active]="hoveredImage === image || hoveredImage === null && image === images[0]"
-      ></div>
+          ></om-typewriter> 
+      </div> 
     </div>
   </div>
   
