@@ -19,7 +19,7 @@ export class AccordionComponent {
     'Home/7.jpg',
     'Home/2.jpg',
     'Home/3.jpg',
-    'Home/9.jpg',
+    'Home/11.jpg',
     'Home/10.jpg'
   ];
 
