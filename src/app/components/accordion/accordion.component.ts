@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NgxTypewriterComponent } from '@omnedia/ngx-typewriter';
 
@@ -19,17 +19,23 @@ export class AccordionComponent {
     'Home/1.jpg',
     'Home/2.jpg',
     'Home/3.jpg',
-    'Home/4.jpg',
-    'Home/6.JPEG'
+    'Home/9.jpg',
+    'Home/7.jpg'
   ];
 
   ngOnInit() {
     console.log(this.hoveredImage);
+    this.updateVH();
     this.startImageRotation();
   }
 
   ngOnDestroy() {
     clearInterval(this.interval);
+  }
+
+  @HostListener('window:resize')
+  updateVH(): void {
+    document.documentElement.style.setProperty('--vh', `${window.innerHeight * 0.01}px`);
   }
 
   startImageRotation() {
