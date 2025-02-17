@@ -1,4 +1,18 @@
-<div class="gallery-container">
+<header class="header">
+    <button class="back-button btn btn-danger" (click)="goBack()">
+      <i class="fa fa-arrow-left"></i> Back
+    </button>
+    <div class="filter-container">
+      <label for="filter" class="filter-label">Place Filter:</label>
+
+      <select id="filter" class="filter-dropdown" [(ngModel)]="selectedFilter" (change)="onFilterChange($event)">
+        <option *ngFor="let option of folders" [value]="option">{{ option }}</option>
+      </select>
+    </div>
+  </header>
+  
+  
+<div class="gallery-container" style="margin: 15px;">
     <div class="gallery-grid">
       <img
         *ngFor="let image of images; let i = index"

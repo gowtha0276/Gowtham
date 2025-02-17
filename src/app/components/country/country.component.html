@@ -1,0 +1,15 @@
+<div class="gallery-container" id="tour">
+    <header class="title">
+        <h2>Gallery</h2>
+    </header>
+    <div class="card-grid">
+      <app-card
+        *ngFor="let country of countries"
+        [countryName]="country.name"
+        [frontImage]="country.frontImage"
+        [backImage]="country.backImage"
+        [link]="country.link">
+      </app-card>
+    </div>
+  </div>
+  

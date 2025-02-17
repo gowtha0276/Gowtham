@@ -1,0 +1,14 @@
+<div class="card-container" (click)="navigate(link)">
+    <div class="card-inner" [class.flipped]="isFlipped">
+      <!-- Front Side -->
+      <div class="card-front">
+        <img [src]="frontImage" alt="{{ countryName }}" class="card-img">
+      </div>
+      <!-- Back Side -->
+      <div class="card-back">
+        <img [src]="backImage" alt="{{ countryName }}" class="card-img">
+      </div>
+    </div>
+    <h5 class="country-name">{{ countryName }}</h5>
+  </div>
+  

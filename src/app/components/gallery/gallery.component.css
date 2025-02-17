@@ -1,3 +1,75 @@
+/* Glassmorphism header */
+.header {
+    display: flex;
+    justify-content: space-between; /* Aligns button and dropdown to left and right */
+    align-items: center;
+    padding: 5px;
+    background: rgba(247, 244, 244, 0.1);  /* Transparent background */
+    backdrop-filter: blur(5px);  /* Apply blur effect */
+    color: #f0f0f0;  /* Light gray text for contrast */
+    box-shadow: 0 4px 8px rgba(245, 241, 241, 0.3);
+    border: 1px solid rgba(253, 250, 250, 0.1);  /* Subtle border to enhance glass effect */
+    width: 100%;
+    border-radius: 0;  /* Square corners for the header */
+  }
+  
+  /* Back button with red color */
+  .back-button {
+    background-color: #dc3545; /* Bootstrap red color */
+    border: none;
+    color: white;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-left: 1rem; /* Space between back button and dropdown */
+  }
+  
+  .back-button i {
+    margin-right: 8px;
+  }
+  
+  .back-button:hover {
+    background-color: #c82333;  /* Darker red on hover */
+  }
+  
+  /* Dropdown container */
+  .filter-container {
+    display: flex;
+    align-items: center;
+    transform: translateX(-300%);
+    gap: 10px;
+  }
+  
+  /* Filter dropdown label */
+  .filter-label {
+    margin-right: 10px;
+    font-size: 14px;
+    color: #b0b0b0;  /* Lighter gray color */
+  }
+  
+  /* Dropdown styling */
+  .filter-dropdown {
+    background-color: #444;
+    color: white;
+    padding: 8px 15px;
+    border-radius: 4px;
+    border: 1px solid #666;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  @media (max-width: 768px) {
+    .filter-container {
+        transform: translateX(-40%);
+    }
+  }
+  
+
 .gallery-img {
     width: 100%;
     height: auto;

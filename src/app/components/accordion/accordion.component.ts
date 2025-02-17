@@ -15,6 +15,7 @@ export class AccordionComponent {
   interval: any;
   hoveredImage: string | null = null;
 
+  
   images = [
     'Home/7.jpg',
     'Home/2.jpg',
@@ -24,7 +25,6 @@ export class AccordionComponent {
   ];
 
   ngOnInit() {
-    console.log(this.hoveredImage);
     this.updateVH();
     this.startImageRotation();
   }
@@ -40,7 +40,6 @@ export class AccordionComponent {
 
   startImageRotation() {
     this.interval = setInterval(() => {
-      console.log(this.getActiveImage());
       const currentIndex = this.images.indexOf(this.getActiveImage());
       const nextIndex = (currentIndex + 1) % this.images.length;
       this.hoveredImage = this.images[nextIndex];

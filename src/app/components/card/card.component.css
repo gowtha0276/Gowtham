@@ -1,0 +1,75 @@
+.card-container {
+    width: 250px;
+    height: 350px;
+    perspective: 1000px;
+    cursor: pointer;
+    text-align: center;
+    margin: 20px auto;
+  }
+  
+  .card-inner {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 1s;
+  }
+  
+  .card-inner.flipped {
+    transform: rotateY(180deg);
+  }
+  
+  /* Front and Back Styles */
+  .card-front,
+  .card-back {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    backface-visibility: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  }
+  
+  .card-back {
+    transform: rotateY(180deg);
+  }
+  
+  /* Image Styles */
+  .card-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+  }
+  
+  /* Country Name Styling */
+  .country-name {
+    margin-top: 15px;
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #fff;
+    letter-spacing: 1px;
+    text-transform: capitalize;
+    background: linear-gradient(45deg, #cde7c2, #b1e29c);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 8px rgba(255, 77, 77, 0.5);
+    transition: all 0.3s ease-in-out;
+  }
+  
+  /* Hover Effect */
+  .card-container:hover .card-inner {
+    transform: scale(1.05);
+    transition: transform 0.5s;
+  }
+  
+  .card-container:hover .country-name {
+    text-shadow: 0 0 12px rgba(255, 204, 0, 0.7);
+  }
+  
