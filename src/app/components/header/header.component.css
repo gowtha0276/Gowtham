@@ -40,4 +40,8 @@
       display: block;
       padding: 12px;
   }
+
+  .custom-name{
+      font-size: 14px;
+  }
 }
