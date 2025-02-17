@@ -4,10 +4,11 @@ import { AccordionComponent } from './components/accordion/accordion.component';
 import { HeaderComponent } from './components/header/header.component';
 import { Router } from '@angular/router';
 import { WorkexperienceComponent } from './components/workexperience/workexperience.component';
+import { GalleryComponent } from './components/gallery/gallery.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, AccordionComponent,HeaderComponent, WorkexperienceComponent],
+  imports: [AccordionComponent,HeaderComponent, WorkexperienceComponent, GalleryComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
