@@ -17,11 +17,11 @@ export class AccordionComponent {
 
   
   images = [
-    'Home/7.jpg',
-    'Home/2.jpg',
-    'Home/3.jpg',
-    'Home/11.jpg',
-    'Home/10.jpg'
+    'Home/1.png',
+    'Home/4.png',
+    'Home/2.png',
+    'Home/5.png',
+    'Home/3.png'
   ];
 
   ngOnInit() {
@@ -62,7 +62,7 @@ export class AccordionComponent {
     return false;
   }
 
-  words: string[] = ['Being Full Stack Developer', 'An Unceasing Backpacker', 'And Nothing to tell', 'Wait Not Flexing', 'Worked in Samsung, Visa and Currently at AQR'];
+  words: string[] = ['Being Full Stack Developer', 'An Unceasing Backpacker', 'Worked in Samsung, Visa and Currently at AQR','Masochism','And Nothing to tell'];
 
  
   

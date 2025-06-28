@@ -15,11 +15,6 @@
 <div class="gallery-container" style="margin: 15px;">
     <div class="gallery-grid">
       <img
-        src="https://firebasestorage.googleapis.com/v0/b/igowtham.firebasestorage.app/o/GOPR0827.JPG?alt=media&token=42179af5-7b0e-4938-8b50-5b2f73b49c51"
-        class="gallery-img"
-        alt="Gallery Image"
-      />
-      <img
         *ngFor="let image of images; let i = index"
         [src]="image"
         class="gallery-img"
