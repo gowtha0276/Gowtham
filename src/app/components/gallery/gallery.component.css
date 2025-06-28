@@ -69,21 +69,42 @@
     }
   }
   
-
-.gallery-img {
+ .gallery-flex {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+  }
+  
+  .gallery-item {
+    width: 30%;
+    margin-bottom: 10px;
+  }
+  
+  .gallery-img {
     width: 100%;
     height: auto;
-    cursor: pointer;
     border-radius: 8px;
+    cursor: pointer;
     transition: transform 0.3s ease-in-out;
   }
-
-  
   
   .gallery-img:hover {
     transform: scale(1.05);
   }
   
+  @media (max-width: 1024px) {
+    .gallery-item {
+      width: 45%;
+    }
+  }
+  
+  @media (max-width: 600px) {
+    .gallery-item {
+      width: 90%;
+    }
+  }  
+
   .modal-body img {
     max-height: 80vh;
     max-width: 100%;

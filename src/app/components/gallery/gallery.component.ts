@@ -21,7 +21,8 @@ export class GalleryComponent {
     'Phillipines': ['1.jpg', '11.jpg']
   };
   folders: string[] = ['All'];
-  images: string[] = [];
+  images: string[] = [];    // your original sorted array
+arrangedImages: string[] = [];   // reordered to match masonry column flow
 
   constructor(private route: ActivatedRoute,
               private router: Router) {}
@@ -62,11 +63,36 @@ export class GalleryComponent {
       // Get download URLs
       this.images = sortedItems.map((item: { name: any; }) => 
         `https://firebasestorage.googleapis.com/v0/b/igowtham.firebasestorage.app/o/${folderName}%2F${item.name}?alt=media&token=884b6846-aa65-4f2c-9e0b-f827245899e9`);
-      console.log(this.images)
+      this.arrangedImages = this.reorderForColumns(this.images, 3); // assuming 3 columns
+
+      console.log(this.arrangedImages)
     } 
     catch (error) {
       console.error('Error loading images:', error);
     }
+  }
+
+  reorderForColumns(images: string[], columns: number): string[] {
+    const result: string[] = [];
+    const colHeights: number[][] = Array.from({ length: columns }, () => []);
+  
+    // Distribute images into columns
+    images.forEach((image, index) => {
+      colHeights[index % columns].push(index);
+    });
+  
+    // Rebuild image array column-wise
+    const maxColLength = Math.max(...colHeights.map(col => col.length));
+    for (let row = 0; row < maxColLength; row++) {
+      for (let col = 0; col < columns; col++) {
+        const imageIndex = colHeights[col][row];
+        if (imageIndex !== undefined) {
+          result.push(images[imageIndex]);
+        }
+      }
+    }
+  
+    return result;
   }
 
   loadImage(folder:any)
