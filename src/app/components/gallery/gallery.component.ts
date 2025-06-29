@@ -60,14 +60,30 @@ export class GalleryComponent {
       const sortedItems = res.items.sort((a: { name: string; }, b: { name: any; }) => a.name.localeCompare(b.name, undefined, { numeric: true, sensitivity: 'base' }));
 
       // Get download URLs
-      this.images = sortedItems.map((item: { name: any; }) => 
+      var urls = sortedItems.map((item: { name: any; }) => 
         `https://firebasestorage.googleapis.com/v0/b/igowtham.firebasestorage.app/o/${folderName}%2F${item.name}?alt=media&token=884b6846-aa65-4f2c-9e0b-f827245899e9`);
-      console.log(this.images)
+
+      this.images = this.reorderForMasonryLeftToRight(urls, 2)
     } 
     catch (error) {
       console.error('Error loading images:', error);
     }
   }
+
+  reorderForMasonryLeftToRight<T>(input: T[], columns: number): T[] {
+    const columnArrays: T[][] = Array.from({ length: columns }, () => []);
+  
+    // Distribute elements across columns in round-robin (left to right)
+    input.forEach((item, index) => {
+      const columnIndex = index % columns;
+      columnArrays[columnIndex].push(item);
+    });
+  
+    // Flatten column-wise (stacked vertically per column, keeping left-to-right order)
+    return columnArrays.flat();
+  }
+  
+
 
   loadImage(folder:any)
   {

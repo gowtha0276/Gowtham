@@ -69,8 +69,7 @@
     }
   }
   
-
-.gallery-img {
+ .gallery-img {
     width: 100%;
     height: auto;
     cursor: pointer;
@@ -78,8 +77,11 @@
     transition: transform 0.3s ease-in-out;
   }
 
-  
-  
+  .gallery-container {
+    column-count: 2; /* Adjust the number of columns based on screen size */
+    column-gap: 10px;
+  }
+ 
   .gallery-img:hover {
     transform: scale(1.05);
   }
@@ -98,21 +100,4 @@
     display: block;
   }
 
-  .gallery-container {
-    column-count: 3; /* Adjust the number of columns based on screen size */
-    column-gap: 10px;
-  }
-  
-  .gallery-img {
-    width: 100%; /* Takes full width of the column */
-    margin-bottom: 10px;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: transform 0.3s ease-in-out;
-  }
-  
-  .gallery-img:hover {
-    transform: scale(1.05);
-  }
-  
   
