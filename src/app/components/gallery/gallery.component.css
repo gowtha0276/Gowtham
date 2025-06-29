@@ -66,6 +66,7 @@
   @media (max-width: 768px) {
     .filter-container {
         transform: translateX(-40%);
+        margin-right: 0;
     }
   }
   
