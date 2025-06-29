@@ -33,7 +33,7 @@
 
 .accordion-item.active 
 {
-  flex: 5;
+  flex:2
 }
 
 .custom-footer {

@@ -1,5 +1,6 @@
 import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
+import { CommonService } from '../../service/common.service';
 
 @Component({
   selector: 'app-card',
@@ -17,7 +18,7 @@ export class CardComponent implements OnInit, OnDestroy {
   isFlipped = false;
   private flipInterval: any;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private commonService: CommonService) {}
 
   ngOnInit() {
     this.flipInterval = setInterval(() => {
@@ -33,5 +34,10 @@ export class CardComponent implements OnInit, OnDestroy {
 
   navigate(link:any) {
     this.router.navigate(['/gallery'],{ queryParams: { folder: link } });
+  }
+
+  viewByGallery(){
+    this.commonService.setGalleryFilter(this.countryName);
+    this.router.navigate(['/gallery']);
   }
 }

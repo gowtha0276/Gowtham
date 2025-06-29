@@ -40,7 +40,7 @@
   .filter-container {
     display: flex;
     align-items: center;
-    transform: translateX(-300%);
+    margin-right: 1rem;
     gap: 10px;
   }
   
@@ -78,7 +78,7 @@
   }
 
   .gallery-container {
-    column-count: 2; /* Adjust the number of columns based on screen size */
+    column-count: 2; 
     column-gap: 10px;
   }
  

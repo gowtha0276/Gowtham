@@ -5,6 +5,8 @@ import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms'; 
 import { ref, listAll } from 'firebase/storage';
 import { storage } from '../../firebase.init';
+import { CommonService } from '../../service/common.service';
+
 @Component({
   selector: 'app-gallery',
   imports: [CommonModule, FormsModule],
@@ -13,38 +15,20 @@ import { storage } from '../../firebase.init';
 })
 
 export class GalleryComponent {
-  selectedFilter = 'All';
-  fileMap: { [key: string]: string[] } = {
-    'India': ['5.jpg', '9.jpg', '10.jpg'],
-    'Oman': ['2.jpg', '3.jpg', '7.jpg','8.jpg'],
-    'Italy': ['4.jpg', '6.JPEG'],
-    'Phillipines': ['1.jpg', '11.jpg']
-  };
-  folders: string[] = ['All'];
+  selectedFilter = '';
+  galleryOptions: string[] = ['Pinned','All'];
   images: string[] = [];
+  selectedImage: string = '';
 
   constructor(private route: ActivatedRoute,
-              private router: Router) {}
+              private router: Router,
+              private commonService:CommonService) {}
 
   async ngOnInit() {
-   
-    for (let key in this.fileMap) 
-      this.folders.push(key)
-    this.route.queryParams.subscribe((params: { [x: string]: string; }) => {
-    const folderName = params['folder'];
-    if (folderName) {
-      this.selectedFilter = folderName
-      this.loadImage(folderName);
-    }
-    else
-      for (let key in this.fileMap) 
-        this.loadImage(key);
-    });
-    console.log(this.selectedFilter)
+    this.commonService.countries.forEach(a => this.galleryOptions.push(a.name));
+    this.selectedFilter = this.commonService.getGalleryFilter();
     await this.loadFileNamesFromFirebase(this.selectedFilter)
   }
-
-  selectedImage: string = '';
 
   goBack() {
     this.router.navigate(['/']); 
@@ -82,27 +66,10 @@ export class GalleryComponent {
     // Flatten column-wise (stacked vertically per column, keeping left-to-right order)
     return columnArrays.flat();
   }
-  
 
-
-  loadImage(folder:any)
-  {
-   // this.fileMap[folder].forEach(element => {
-     // this.images.push("Home/"+folder+"/"+element)
-    //});
-  }
-
-  onFilterChange(event: any) {
+  async onFilterChange(event: any) {
     const selectedFilter = event.target.value;
-    console.log('Selected filter:', selectedFilter);
-    this.images = [];
-    if(selectedFilter == 'All')
-    {
-      for (let key in this.fileMap) 
-        this.loadImage(key);
-    }
-    else
-    this.loadImage(selectedFilter)
+    await this.loadFileNamesFromFirebase(this.selectedFilter)
   }
 
   openModal(index: number): void {

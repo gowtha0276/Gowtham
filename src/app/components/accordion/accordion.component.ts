@@ -21,7 +21,7 @@ export class AccordionComponent {
     'Home/4.png',
     'Home/2.png',
     'Home/5.png',
-    'Home/3.png'
+    'Home/Misc.png'
   ];
 
   ngOnInit() {
