@@ -11,18 +11,18 @@
     </div>
   </header>
   
- 
-  <div class="gallery-flex">
-    <div *ngFor="let image of images; let i = index" class="gallery-item">
+  
+<div class="gallery-container" style="margin: 15px;">
+    <div class="gallery-grid">
       <img
+        *ngFor="let image of images; let i = index"
         [src]="image"
-        (click)="openModal(i)"
         class="gallery-img"
+        (click)="openModal(i)"
         alt="Gallery Image"
       />
     </div>
-  </div>  
-  
+  </div>
   
   <!-- Modal -->
   <div id="imageModal" class="modal fade" tabindex="-1">
