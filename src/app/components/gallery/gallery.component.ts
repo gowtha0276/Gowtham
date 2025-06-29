@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms'; 
 import { ref, listAll } from 'firebase/storage';
 import { storage } from '../../firebase.init';
+import { getDownloadURL } from 'firebase/storage';
 import { CommonService } from '../../service/common.service';
 
 @Component({
@@ -34,25 +35,28 @@ export class GalleryComponent {
     this.router.navigate(['/']); 
   }
 
-  async loadFileNamesFromFirebase(folderName : any) {
-    const folderRef = ref(storage, folderName);
+  
 
-    try {
-      const res = await listAll(folderRef);
+async loadFileNamesFromFirebase(folderName: string) {
+  const folderRef = ref(storage, folderName);
 
-      // Sort items by name
-      const sortedItems = res.items.sort((a: { name: string; }, b: { name: any; }) => a.name.localeCompare(b.name, undefined, { numeric: true, sensitivity: 'base' }));
+  try {
+    const res = await listAll(folderRef);
 
-      // Get download URLs
-      var urls = sortedItems.map((item: { name: any; }) => 
-        `https://firebasestorage.googleapis.com/v0/b/igowtham.firebasestorage.app/o/${folderName}%2F${item.name}?alt=media&token=884b6846-aa65-4f2c-9e0b-f827245899e9`);
+    // Sort items by name
+    const sortedItems = res.items.sort((a: { name: string; }, b: { name: any; }) =>
+      a.name.localeCompare(b.name, undefined, { numeric: true, sensitivity: 'base' })
+    );
 
-      this.images = this.reorderForMasonryLeftToRight(urls, 2)
-    } 
-    catch (error) {
-      console.error('Error loading images:', error);
-    }
+    // Get download URLs using getDownloadURL
+    const urls = await Promise.all(sortedItems.map((item: any) => getDownloadURL(item)));
+
+    this.images = this.reorderForMasonryLeftToRight(urls, 2);
+    console.log(this.images)
+  } catch (error) {
+    console.error('Error loading images:', error);
   }
+}
 
   reorderForMasonryLeftToRight<T>(input: T[], columns: number): T[] {
     const columnArrays: T[][] = Array.from({ length: columns }, () => []);
