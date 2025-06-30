@@ -14,20 +14,29 @@ export class AccordionComponent {
   activeIndex = 0;
   interval: any;
   hoveredImage: string | null = null;
-
-  
-  images = [
+  imagesFull = [
     'Home/1.webp',
     'Home/4.webp',
     'Home/2.webp',
-    'Home/5.webp',
-    'Home/Misc.webp'
+    'Home/Misc.webp',
+    'Home/5.webp'
   ];
+  
+  images: string[] = [];
+  
 
   ngOnInit() {
     this.updateVH();
+    this.setImagesBasedOnScreenSize();
     this.startImageRotation();
   }
+
+
+setImagesBasedOnScreenSize() {
+  const screenWidth = window.innerWidth;
+  this.images = screenWidth <= 768 ? this.imagesFull.slice(0, 4) : [...this.imagesFull];
+  console.log(this.images)
+}
 
   ngOnDestroy() {
     clearInterval(this.interval);

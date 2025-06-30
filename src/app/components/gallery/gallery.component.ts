@@ -45,11 +45,11 @@ export class GalleryComponent {
     try {
       const res = await listAll(folderRef);
 
-      const sortedItems = res.items.sort((a, b) =>
+      const sortedItems = res.items.sort((a: { name: string; }, b: { name: any; }) =>
         a.name.localeCompare(b.name, undefined, { numeric: true, sensitivity: 'base' })
       );
 
-      const urls = await Promise.all(sortedItems.map(item => getDownloadURL(item)));
+      const urls = await Promise.all(sortedItems.map((item: any) => getDownloadURL(item)));
       this.images = this.reorderForMasonryLeftToRight(urls, 2);
       this.imageLoading = new Array(this.images.length).fill(true);
     } catch (error) {

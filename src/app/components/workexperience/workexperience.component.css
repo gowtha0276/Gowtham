@@ -10,6 +10,9 @@ main.row{
 	grid-template-columns: 1fr 1fr;
 	grid-column-gap: 20px;
 }
+.scroll{
+	scroll-margin-top: 4rem;
+}
 .col header.title{
 	color: aliceblue;
     font-family:Georgia, 'Times New Roman', Times, serif;
