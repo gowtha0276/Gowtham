@@ -1,15 +1,14 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ActivatedRoute } from '@angular/router';
-import { Router } from '@angular/router';
-import { FormsModule } from '@angular/forms'; 
-import { ref, listAll } from 'firebase/storage';
+import { ActivatedRoute, Router } from '@angular/router';
+import { FormsModule } from '@angular/forms';
+import { ref, listAll, getDownloadURL } from 'firebase/storage';
 import { storage } from '../../firebase.init';
-import { getDownloadURL } from 'firebase/storage';
 import { CommonService } from '../../service/common.service';
 
 @Component({
   selector: 'app-gallery',
+  standalone: true,
   imports: [CommonModule, FormsModule],
   templateUrl: './gallery.component.html',
   styleUrl: './gallery.component.css'
@@ -17,72 +16,78 @@ import { CommonService } from '../../service/common.service';
 
 export class GalleryComponent {
   selectedFilter = '';
-  galleryOptions: string[] = ['Pinned','All'];
+  galleryOptions: string[] = ['Pinned', 'All'];
   images: string[] = [];
-  selectedImage: string = '';
+  selectedImage = '';
   imageLoading: boolean[] = [];
 
-  constructor(private route: ActivatedRoute,
-              private router: Router,
-              private commonService:CommonService) {}
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private commonService: CommonService
+  ) {}
 
-  async ngOnInit() {
-    this.commonService.countries.forEach(a => this.galleryOptions.push(a.name));
-    this.selectedFilter = this.commonService.getGalleryFilter();
-    await this.loadFileNamesFromFirebase(this.selectedFilter)
+  async ngOnInit(): Promise<void> {
+    const queryFilter = this.route.snapshot.queryParamMap.get('filter');
+    this.commonService.countries.forEach(country => this.galleryOptions.push(country.name));
+    this.selectedFilter = queryFilter || 'Pinned';
+    this.updateQueryParams(this.selectedFilter)
+    await this.loadFileNamesFromFirebase(this.selectedFilter);
   }
 
-  goBack() {
-    this.router.navigate(['/']); 
+  goBack(): void {
+    this.router.navigate(['/']);
   }
 
-  
+  async loadFileNamesFromFirebase(folderName: string): Promise<void> {
+    const folderRef = ref(storage, folderName);
 
-async loadFileNamesFromFirebase(folderName: string) {
-  const folderRef = ref(storage, folderName);
+    try {
+      const res = await listAll(folderRef);
 
-  try {
-    const res = await listAll(folderRef);
+      const sortedItems = res.items.sort((a, b) =>
+        a.name.localeCompare(b.name, undefined, { numeric: true, sensitivity: 'base' })
+      );
 
-    // Sort items by name
-    const sortedItems = res.items.sort((a: { name: string; }, b: { name: any; }) =>
-      a.name.localeCompare(b.name, undefined, { numeric: true, sensitivity: 'base' })
-    );
-
-    // Get download URLs using getDownloadURL
-    const urls = await Promise.all(sortedItems.map((item: any) => getDownloadURL(item)));
-
-    this.images = this.reorderForMasonryLeftToRight(urls, 2);
-    this.images.forEach((_, index) => this.imageLoading[index] = true);
-  } catch (error) {
-    console.error('Error loading images:', error);
+      const urls = await Promise.all(sortedItems.map(item => getDownloadURL(item)));
+      this.images = this.reorderForMasonryLeftToRight(urls, 2);
+      this.imageLoading = new Array(this.images.length).fill(true);
+    } catch (error) {
+      console.error('Error loading images:', error);
+    }
   }
-}
 
   reorderForMasonryLeftToRight<T>(input: T[], columns: number): T[] {
     const columnArrays: T[][] = Array.from({ length: columns }, () => []);
-  
-    // Distribute elements across columns in round-robin (left to right)
     input.forEach((item, index) => {
       const columnIndex = index % columns;
       columnArrays[columnIndex].push(item);
     });
-  
-    // Flatten column-wise (stacked vertically per column, keeping left-to-right order)
     return columnArrays.flat();
   }
 
-  async onFilterChange(event: any) {
-    const selectedFilter = event.target.value;
-    await this.loadFileNamesFromFirebase(this.selectedFilter)
+  async onFilterChange(event: Event): Promise<void> {
+    const selectedFilter = (event.target as HTMLSelectElement).value;
+    this.selectedFilter = selectedFilter;
+    this.updateQueryParams(selectedFilter);
+    await this.loadFileNamesFromFirebase(selectedFilter);
+  }
+
+  updateQueryParams(filter:any)
+  {
+    this.router.navigate([], {
+      relativeTo: this.route,
+      queryParams: { filter: filter },
+      queryParamsHandling: 'merge'
+    });
   }
 
   openModal(index: number): void {
     this.selectedImage = this.images[index];
-    // Get modal element and trigger it using JavaScript
+
     const modalElement = document.getElementById('imageModal');
     if (modalElement) {
-      (modalElement as any).style.display = 'block';
+      modalElement.style.display = 'block';
       modalElement.classList.add('show');
     }
   }
@@ -91,11 +96,11 @@ async loadFileNamesFromFirebase(folderName: string) {
     const modalElement = document.getElementById('imageModal');
     if (modalElement) {
       modalElement.classList.remove('show');
-      (modalElement as any).style.display = 'none';
+      modalElement.style.display = 'none';
     }
   }
 
-  imageLoad(index: number) {
+  imageLoad(index: number): void {
     this.imageLoading[index] = false;
   }
 }

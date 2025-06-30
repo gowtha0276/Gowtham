@@ -1,3 +1,17 @@
+<section class="countries-visited">
+  <header class="title">
+    <h2>Countries Visited</h2>
+  </header>
+
+  <div class="country-list">
+    <div class="country-item" *ngFor="let country of countriesVisited; let i = index">
+      <span class="country-number">{{ i + 1 }}.</span>
+      <img class="flag-icon" [src]="'https://flagcdn.com/w40/' + country.code + '.png'" [alt]="country.name + ' flag'" />
+      <span class="country-name">{{ country.name }}</span>
+    </div>
+  </div>
+</section>
+
 <div class="gallery-container" id="tour">
     <header class="title">
         <h2>Gallery</h2>

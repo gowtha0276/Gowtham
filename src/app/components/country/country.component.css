@@ -31,3 +31,52 @@
     margin: 0 auto;
   }
   
+  .countries-visited {
+    padding: 1rem;
+    text-align: center;
+  }
+  .country-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 1rem;
+  }
+  
+  .country-item {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+    padding: 2px 6px;
+    font-size: 12px;
+    color: white;
+    white-space: nowrap;
+  }
+  
+  .country-number {
+    font-weight: 500;
+  }
+  
+  .flag-icon {
+    width: 16px;
+    height: 12px;
+    object-fit: cover;
+    border-radius: 2px;
+  }
+  
+  /* Optional: further size reduction on very small devices */
+  @media (max-width: 400px) {
+    .country-item {
+      font-size: 11px;
+      gap: 3px;
+      padding: 1px 5px;
+    }
+  
+    .flag-icon {
+      width: 14px;
+      height: 10px;
+    }
+  }
+  

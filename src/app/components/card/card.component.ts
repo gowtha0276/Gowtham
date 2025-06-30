@@ -32,12 +32,7 @@ export class CardComponent implements OnInit, OnDestroy {
     }
   }
 
-  navigate(link:any) {
-    this.router.navigate(['/gallery'],{ queryParams: { folder: link } });
-  }
-
   viewByGallery(){
-    this.commonService.setGalleryFilter(this.countryName);
-    this.router.navigate(['/gallery']);
+    this.router.navigate(['/gallery'],{ queryParams: { filter: this.countryName } });
   }
 }
