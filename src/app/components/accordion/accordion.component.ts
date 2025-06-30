@@ -31,12 +31,10 @@ export class AccordionComponent {
     this.startImageRotation();
   }
 
-
-setImagesBasedOnScreenSize() {
-  const screenWidth = window.innerWidth;
-  this.images = screenWidth <= 768 ? this.imagesFull.slice(0, 4) : [...this.imagesFull];
-  console.log(this.images)
-}
+  setImagesBasedOnScreenSize() {
+    const screenWidth = window.innerWidth;
+    this.images = screenWidth <= 768 ? this.imagesFull.slice(0, 4) : [...this.imagesFull];
+  }
 
   ngOnDestroy() {
     clearInterval(this.interval);
@@ -72,8 +70,4 @@ setImagesBasedOnScreenSize() {
   }
 
   words: string[] = ['Being Full Stack Developer', 'An Unceasing Backpacker', 'Worked in Samsung, Visa and Currently at AQR','Masochism','And Nothing to tell'];
-
- 
-  
-  
 }

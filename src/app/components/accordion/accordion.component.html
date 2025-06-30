@@ -1,11 +1,6 @@
 <div class="container">
-    <!-- <div class="center-text">
-        <h1>Hola, Gowtham Manoharan</h1>
-         
-    </div> -->
-   
-    <div class="accordion">
-      <div 
+  <div class="accordion">
+    <div 
         *ngFor="let image of images; let i = index" 
         class="accordion-item" 
         [ngStyle]="{'background-image': 'url(' + image + ')'}"
@@ -20,7 +15,7 @@
           [deleteDelay]="2000"
           [writeDelay]="30"
         ></om-typewriter> 
-    </div> 
-    </div>
+      </div> 
   </div>
+</div>
   

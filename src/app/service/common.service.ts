@@ -11,7 +11,6 @@ interface Country {
 })
 export class CommonService {
   public countries: Country[] = [
-    
     { name: 'Europe', frontImage: 'Home/Europe.webp', backImage: 'Home/Europe.webp' },
     { name: 'Oman', frontImage: 'Home/Oman.webp', backImage: 'Home/Oman.webp'},
     { name: 'MISC', frontImage: 'Home/Misc.webp', backImage: 'Home/Misc.webp'},
