@@ -17,11 +17,11 @@ export class AccordionComponent {
 
   
   images = [
-    'Home/1.png',
-    'Home/4.png',
-    'Home/2.png',
-    'Home/5.png',
-    'Home/Misc.png'
+    'Home/1.webp',
+    'Home/4.webp',
+    'Home/2.webp',
+    'Home/5.webp',
+    'Home/Misc.webp'
   ];
 
   ngOnInit() {
