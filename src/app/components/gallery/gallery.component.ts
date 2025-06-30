@@ -20,6 +20,7 @@ export class GalleryComponent {
   galleryOptions: string[] = ['Pinned','All'];
   images: string[] = [];
   selectedImage: string = '';
+  imageLoading: boolean[] = [];
 
   constructor(private route: ActivatedRoute,
               private router: Router,
@@ -52,7 +53,7 @@ async loadFileNamesFromFirebase(folderName: string) {
     const urls = await Promise.all(sortedItems.map((item: any) => getDownloadURL(item)));
 
     this.images = this.reorderForMasonryLeftToRight(urls, 2);
-    console.log(this.images)
+    this.images.forEach((_, index) => this.imageLoading[index] = true);
   } catch (error) {
     console.error('Error loading images:', error);
   }
@@ -92,5 +93,9 @@ async loadFileNamesFromFirebase(folderName: string) {
       modalElement.classList.remove('show');
       (modalElement as any).style.display = 'none';
     }
+  }
+
+  imageLoad(index: number) {
+    this.imageLoading[index] = false;
   }
 }

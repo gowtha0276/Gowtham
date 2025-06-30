@@ -11,17 +11,22 @@
     </div>
   </header>
   
-  
-<div class="gallery-container" style="margin: 15px;">
+  <div class="gallery-container" style="margin: 15px;">
     <div class="gallery-grid">
-      <img
-        *ngFor="let image of images; let i = index"
-        [src]="image"
-        loading="lazy" 
-        class="gallery-img"
-        (click)="openModal(i)"
-        alt="Gallery Image"
-      />
+      <div class="gallery-img-wrapper" *ngFor="let image of images; let i = index">
+        <div *ngIf="imageLoading[i]" class="spinner-overlay">
+          <div class="spinner"></div>
+        </div>
+        <img
+          [src]="image"
+          (load)="imageLoad(i)"
+          loading="lazy"
+          class="gallery-img"
+          [class.loaded]="!imageLoading[i]"
+          (click)="openModal(i)"
+          alt="Gallery Image"
+        />
+      </div>
     </div>
   </div>
   
