@@ -39,7 +39,9 @@ export class GalleryComponent {
 
   async loadFilter(){
     this.updateQueryParams(this.selectedFilter);
-    if(this.selectedFilter == "All")
+    if(this.selectedFilter == "Pinned")
+      this.images = this.commonService.pinned;
+    else if(this.selectedFilter == "All")
       await this.getAllFilesInStorage();
     else
       await this.getFilesForSelectedFolder(this.selectedFilter);

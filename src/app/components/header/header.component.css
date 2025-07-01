@@ -45,3 +45,24 @@
       font-size: 14px;
   }
 }
+
+.custom-footer {
+  background-color: #000; /* Black background */
+  height: 40px;
+  padding: 5px 0;
+  z-index: 1030;
+}
+
+.footer-icon {
+  color: white;
+  font-size: 20px;
+  margin: 0 12px;
+  text-decoration: none;
+  transition: transform 0.2s, color 0.2s;
+}
+
+.footer-icon:hover {
+  color: #0d6efd; /* Bootstrap blue */
+  transform: scale(1.2);
+}
+

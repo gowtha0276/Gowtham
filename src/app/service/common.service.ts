@@ -9,6 +9,7 @@ interface Country {
 @Injectable({
   providedIn: 'root' // Makes it a singleton across the app
 })
+
 export class CommonService {
   public countries: Country[] = [
     { name: 'Europe', frontImage: 'Home/Europe.webp', backImage: 'Home/Europe.webp' },
@@ -24,6 +25,11 @@ export class CommonService {
     { name: 'Singapore', frontImage: 'Home/Singapore.webp', backImage: 'Home/Singapore.webp'},
     { name: 'UAE', frontImage: 'Home/UAE.webp', backImage: 'Home/UAE.webp'},
   ];
+
+  public pinned: string[] = [
+    'Home/Pinned/2.webp',
+    'Home/Pinned/4.webp'
+   ];
 
   constructor() { }
 }

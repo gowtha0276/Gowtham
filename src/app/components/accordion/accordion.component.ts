@@ -69,5 +69,11 @@ export class AccordionComponent {
     return false;
   }
 
-  words: string[] = ['Being Full Stack Developer', 'An Unceasing Backpacker', 'Worked in Samsung, Visa and Currently at AQR','Masochism','And Nothing to tell'];
+  words: string[] = [
+    'Being Full Stack Developer', 
+    'An Unceasing Backpacker', 
+    'Worked in Samsung, Visa and Currently at AQR',
+    'It is What it is',
+    'And Nothing to tell'
+  ];
 }
