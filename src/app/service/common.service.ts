@@ -20,6 +20,8 @@ export class CommonService {
     { name: 'HongKong', frontImage: 'Home/HongKong.webp', backImage: 'Home/HongKong.webp' },
     { name: 'Egypt', frontImage: 'Home/Egypt.webp', backImage: 'Home/Egypt.webp'},
     { name: 'Thailand', frontImage: 'Home/Thailand.webp', backImage: 'Home/Thailand.webp'},
+    { name: 'Malaysia', frontImage: 'Home/Malaysia.webp', backImage: 'Home/Malaysia.webp'},
+    { name: 'Singapore', frontImage: 'Home/Singapore.webp', backImage: 'Home/Singapore.webp'},
     { name: 'UAE', frontImage: 'Home/UAE.webp', backImage: 'Home/UAE.webp'},
   ];
 
