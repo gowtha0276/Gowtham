@@ -16,7 +16,7 @@ import { CommonService } from '../../service/common.service';
 
 export class GalleryComponent {
   selectedFilter = '';
-  galleryOptions: string[] = ['Pinned', 'All'];
+  galleryOptions: string[] = ['Pinned'];
   images: string[] = [];
   selectedImage = '';
   imageLoading: boolean[] = [];
@@ -29,6 +29,7 @@ export class GalleryComponent {
 
   async ngOnInit(): Promise<void> {
     this.commonService.countries.forEach(country => this.galleryOptions.push(country.name));
+    this.galleryOptions.push('All')
     this.selectedFilter = this.route.snapshot.queryParamMap.get('filter') || 'Pinned';
     this.loadFilter();
   }
@@ -40,7 +41,7 @@ export class GalleryComponent {
   async loadFilter(){
     this.updateQueryParams(this.selectedFilter);
     if(this.selectedFilter == "Pinned")
-      this.images = this.commonService.pinned;
+      this.getPinnedFiles();
     else if(this.selectedFilter == "All")
       await this.getAllFilesInStorage();
     else
@@ -71,6 +72,12 @@ export class GalleryComponent {
       }
     }
     this.images = allImages;
+    this.imageLoading = new Array(this.images.length).fill(true);
+  }
+
+  getPinnedFiles(){
+    const urls = this.commonService.pinned;
+    this.images = this.reorderForMasonryLeftToRight(urls, 2);
     this.imageLoading = new Array(this.images.length).fill(true);
   }
   
