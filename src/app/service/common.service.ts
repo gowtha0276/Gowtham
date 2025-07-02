@@ -28,7 +28,6 @@ export class CommonService {
 
   public pinned: string[] = [
     'Home/Pinned/105.webp',
-    'Home/Pinned/110.webp',
     'Home/Pinned/115.webp',
     'Home/Pinned/120.webp',
     'Home/Pinned/125.webp',
