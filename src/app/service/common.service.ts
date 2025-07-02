@@ -64,7 +64,8 @@ export class CommonService {
     'Home/Pinned/270.webp',
     'Home/Pinned/280.webp',
     'Home/Pinned/285.webp',
-    'Home/Pinned/290.webp'
+    'Home/Pinned/290.webp',
+    'Home/Pinned/295.webp'
   ];
   
 
