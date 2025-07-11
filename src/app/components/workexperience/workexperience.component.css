@@ -69,3 +69,18 @@ main.row{
 		margin-top: 30px;
 	}
 }
+
+.aqr{
+	display: inline;
+    width: 2.5rem;
+    height: 2.6rem;
+    margin-top: -0.7rem;
+    margin-left: 10px;
+}
+
+.visa{
+	display: inline;
+    height: 1.2rem;
+    margin-top: -0.7rem;
+    margin-left: -0.5rem;
+}
